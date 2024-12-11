@@ -6,8 +6,7 @@ import { useContext } from "react";
 import axios from "axios";
 import { useNavigate,Link } from "react-router-dom";
 import {UserRegContext} from '../Context/UserRegContext';
-// import Login from "./Login"
-// import "./Registration.css";
+
 const Registration = () => {
 
 
@@ -17,6 +16,7 @@ const Registration = () => {
     email: "",
     Password: "",
   });
+  //get the saveuserreg for user filling details save after the plan select
   const {SaveUserReg}=useContext(UserRegContext);
 
   
@@ -34,6 +34,7 @@ const Registration = () => {
 
 // Field datas stored in e
   const handleinputchange = (e) => {
+    //new method for saving user data
     setUserList((prevData) => {
       return {
         ...prevData,
@@ -64,12 +65,14 @@ const Registration = () => {
 
   const Navigate=useNavigate();
 
-  // url for post method
+  // url for post method it only checks the data didnot save and email already exists
   const Url = "http://localhost:9000/Registration/validation";
 
 
   const handlesubmit = async () => {
     const { name, email, Password } = userList;
+
+    //any fields it empty send the alert
     if(!name||!email||!Password){
       alert("please fill the details")
     }
@@ -78,11 +81,12 @@ const Registration = () => {
       setCheckError("You must accept the terms and conditions");
       return;
     }
+    //checks the password length
     if (userList.Password.length < 8) {
       setPasswordError("Password must be at least 8 characters long.");
       return;
     }
-    // Navigate('/Price');
+    
   
     try {
       const response = await axios.post(Url, userList);
@@ -94,15 +98,13 @@ const Registration = () => {
         setEmailError("Email already exists");
         console.log(EmailError,"email already exists");
         return;
-        // console.log(respstatus);
       } 
        else {
         SaveUserReg(userList)
-        // console.log(respstatus, "data send successfully");
         Navigate('/Price');
       }
   
-      // Reset form data
+      // Reset all datas
       setUserList({
         name: "",
         email: "",

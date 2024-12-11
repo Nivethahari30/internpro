@@ -5,11 +5,15 @@ import { useEffect,useState } from "react";
 import { useNavigate,Navigate } from "react-router-dom";
 import axios from "axios";
 const Submit = () => {
-
+//save user reg data and slected plan
   const FullDatatUrl="http://localhost:9000/Registration";
 
+//get the function from context whether is empty or not its not emty didinot save in the db
   const { UserContext,SaveUserPlan,UserFullData } = useContext(UserRegContext);
-   const Navigate=useNavigate()
+
+const Navigate=useNavigate()
+  
+   //save all the data into state
    const[UserSavedData,setUserSavedData,]=useState("")
 
    useEffect(() => {

@@ -5,50 +5,48 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-
-  const[LoginData,setLoginData]=useState({
-    email:"",
-    Password:""
-  })
-const Navigate=useNavigate();
-  const handleinputchange=(e)=>{
-    setLoginData((preData)=>{
-      return{
+  const [LoginData, setLoginData] = useState({
+    email: "",
+    Password: ""
+  });
+  const Navigate = useNavigate();
+  const handleinputchange = (e) => {
+    //new method to set the inputdata into logindata using setlogindata
+    setLoginData((preData) => {
+      return {
         ...preData,
-        [e.target.name]:e.target.value
-      }
-    })
-  }
+        [e.target.name]: e.target.value,
+      };
+    });
+  };
+  //login url backend url checks whether the user already exists are not
   const Loginurl = "http://localhost:9000/Login/UserValidation";
-  // const Navigate=useNavigate();
   const handlelogin = async () => {
     try {
       const response = await axios.post(Loginurl, LoginData);
       const { status, token, message } = response.data;
-  
-      if (status ==="success") {
+
+      if (status === "success") {
         // Navigate to Dashboard on successful login
         console.log("status:", status);
-        console.log("token",token)
-       localStorage.setItem("jwt-token",token);
-      //  const jwttoken=localStorage.getItem("jwt-token")
-      // if(jwttoken===token){
-      //   alert("jwt store in localstorage")
-      // }
-        
+        console.log("token", token);
+
+        //token store in localstorage
+        localStorage.setItem("jwt-token", token);
+
+        //send the event to the app on event happen
+        window.dispatchEvent(new Event("token-update"));
         Navigate("/Filesubmit");
       } else {
-        // Handle invalid credentials
+        // Handle invalid login
         alert(message || "Login failed. Please try again.");
-        console.log("error")
+        console.log("error");
       }
     } catch (e) {
       // Handle server errors
       console.error(e);
-      alert("An error occurred while logging in. Please try again later.",e);
+      alert("An error occurred while logging in. Please try again later.", e);
     }
-   
-    
   };
 
   return (
@@ -82,11 +80,9 @@ const Navigate=useNavigate();
               name="email"
               placeholder="@Email Address"
               onChange={handleinputchange}
-              
               required
             />
 
-            {/* Email Error */}
           </div>
 
           {/* Password Field */}
@@ -102,7 +98,6 @@ const Navigate=useNavigate();
               required
               placeholder=" Enter your Password"
               onChange={handleinputchange}
-
             />
             <button
               className="btn btn-primary mt-3 "
@@ -118,7 +113,6 @@ const Navigate=useNavigate();
           <p style={{ boxShadow: "0px 0 30px rgba(1, 41, 112, 0.1)" }}>
             <Link to="/">Create Account</Link>{" "}
           </p>
-          
         </div>
       </div>
     </div>

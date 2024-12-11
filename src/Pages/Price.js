@@ -4,18 +4,15 @@ import { UserRegContext } from "../Context/UserRegContext";
 import { useNavigate } from "react-router-dom";
 
 const Price = () => {
+  //get the saveplan function to add  plan into the db
   const { savePlan } = useContext(UserRegContext);
-  const Navigate=useNavigate();
-
+  const Navigate = useNavigate();
 
   const handlePlan = (Plan) => {
     console.log(Plan, "user selected plan");
     savePlan(Plan);
     Navigate("/Submit");
   };
-  
-
- 
 
   return (
     <div>

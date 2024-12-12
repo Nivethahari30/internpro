@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
   const [LoginData, setLoginData] = useState({
     email: "",
-    Password: ""
+    Password: "",
   });
   const Navigate = useNavigate();
   const handleinputchange = (e) => {
@@ -22,12 +22,15 @@ const Login = () => {
   //login url backend url checks whether the user already exists are not
   const Loginurl = "http://localhost:9000/Login/UserValidation";
   const handlelogin = async () => {
+    if (!LoginData.email || !LoginData.password) {
+      alert("Please fill in both email and password.");
+      return;
+    }
     try {
       const response = await axios.post(Loginurl, LoginData);
       const { status, token, message } = response.data;
 
       if (status === "success") {
-        // Navigate to Dashboard on successful login
         console.log("status:", status);
         console.log("token", token);
 
@@ -36,6 +39,7 @@ const Login = () => {
 
         //send the event to the app on event happen
         window.dispatchEvent(new Event("token-update"));
+        // Navigate to Dashboard on successful login
         Navigate("/Filesubmit");
       } else {
         // Handle invalid login
@@ -82,7 +86,6 @@ const Login = () => {
               onChange={handleinputchange}
               required
             />
-
           </div>
 
           {/* Password Field */}

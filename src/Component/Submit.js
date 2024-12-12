@@ -1,28 +1,29 @@
 import React from "react";
 import { useContext } from "react";
 import { UserRegContext } from "../Context/UserRegContext";
-import { useEffect,useState } from "react";
-import { useNavigate,Navigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, Navigate } from "react-router-dom";
 import axios from "axios";
 const Submit = () => {
-//save user reg data and slected plan
-  const FullDatatUrl="http://localhost:9000/Registration";
+  //save user reg data and slected plan
+  const FullDatatUrl = "http://localhost:9000/Registration";
 
-//get the function from context whether is empty or not its not emty didinot save in the db
-  const { UserContext,SaveUserPlan,UserFullData } = useContext(UserRegContext);
+  //get the function from context whether is empty or not its not emty didinot save in the db
+  const { UserContext, SaveUserPlan, UserFullData } =
+    useContext(UserRegContext);
 
-const Navigate=useNavigate()
-  
-   //save all the data into state
-   const[UserSavedData,setUserSavedData,]=useState("")
+  const Navigate = useNavigate();
 
-   useEffect(() => {
+  //save all the data into state
+  const [UserSavedData, setUserSavedData] = useState("");
+
+  useEffect(() => {
     const saveData = async () => {
       try {
         console.log("UserContext:", UserContext);
         console.log("Plan:", SaveUserPlan);
         console.log("UserFullData:", UserFullData);
-  
+
         // Directly use UserFullData instead of UserSavedData
         if (UserFullData) {
           const response = await axios.post(FullDatatUrl, UserFullData);
@@ -34,21 +35,16 @@ const Navigate=useNavigate()
         console.error("Error saving data:", e);
       }
     };
-  
+
     saveData(); // Call the async function
-  
   }, [UserContext, SaveUserPlan, UserFullData]); // Dependencies
-  
 
   const handlesubmit = () => {
     console.log(
       "Your Details are successfully saved in Submit Page So dont worry about that login for use this app"
     );
-   Navigate("/Login")
-     // save logic for combine the userlist object and plan into one object USED FOR ONLOADING
-
-  
-
+    Navigate("/Login");
+    // save logic for combine the userlist object and plan into one object USED FOR ONLOADING
   };
   return (
     <div className="row ">
@@ -56,11 +52,12 @@ const Navigate=useNavigate()
         <button className="btn btn-primary " onClick={handlesubmit}>
           Login
         </button>
-        </div>
-        <div className=" col-12 d-flex justify-content-center align-items-center mt-3">
-        <h5 style={{font:"#012970"}}> Successfully Registered Welcome to Intern Pro</h5>
-       
-       
+      </div>
+      <div className=" col-12 d-flex justify-content-center align-items-center mt-3">
+        <h5 style={{ font: "#012970" }}>
+          {" "}
+          Successfully Registered Welcome to Intern Pro
+        </h5>
       </div>
     </div>
   );

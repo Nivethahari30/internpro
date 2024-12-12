@@ -1,5 +1,4 @@
 import React from "react";
-import "../App.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -7,7 +6,6 @@ const Filesubmit = () => {
   const Navigate = useNavigate();
   const [UploadFile, setUploadFile] = useState(null);
   const [fileError, setError] = useState(null);
-  // const[sizeError,setsizeError]=useState(null);
 
   //when logout condition to remove the token from localstorage
   const removetoken = () => {
@@ -27,7 +25,7 @@ const Filesubmit = () => {
     "image/jpeg",
   ]; //allowing types of files
   const Maxsize = 5 * 1024 * 1024; //maxmum size of file
-
+//onchangemwe have to save the files and checks the conditions
   const handlefile = (e) => {
     const file = e.target.files[0];
     console.log(file); 
@@ -61,7 +59,6 @@ const Filesubmit = () => {
           onChange={handlefile}
         />
         {fileError && <p style={{ color: "red" }}>{fileError}</p>}
-        {/* <p>{sizeError}</p> */}
         <button type="submit" className="btn btn-primary mt-2">
           Submit
         </button>

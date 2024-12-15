@@ -22,7 +22,7 @@ const Login = () => {
   //login url backend url checks whether the user already exists are not
   const Loginurl = "http://localhost:9000/Login/UserValidation";
   const handlelogin = async () => {
-    if (!LoginData.email || !LoginData.password) {
+    if (!LoginData.email || !LoginData.Password) {
       alert("Please fill in both email and password.");
       return;
     }

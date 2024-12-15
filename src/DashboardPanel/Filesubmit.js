@@ -59,12 +59,12 @@ const Filesubmit = () => {
           onChange={handlefile}
         />
         {fileError && <p style={{ color: "red" }}>{fileError}</p>}
-        <button type="submit" className="btn btn-primary mt-2">
+        <button type="submit" className="btn btn-primary mt-2" disabled={!UploadFile}>
           Submit
         </button>
       </div>
       <div className="mt-5 ms-5">
-        <button className="btn btn-primary"disabled={!handlefile} onClick={removetoken}>
+        <button className="btn btn-primary" onClick={removetoken}>
           Log out
         </button>
       </div>

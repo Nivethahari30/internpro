@@ -8,6 +8,7 @@ import Login from "./Component/Login";
 import Filesubmit from "./DashboardPanel/Filesubmit";
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
+import Ansdis from "./DashboardPanel/Ansdis";
 
 const App = () => {
   //check whether the token exist or not, initially set it false after get token the token set it true
@@ -35,7 +36,7 @@ const App = () => {
         >
           <h3
             className="text-center ms-5"
-            style={{ font: "#012970", fontSize: "20px" }}
+            style={{ color: "#012970", fontSize: "20px" }}
           >
             <img src="logo.png" alt="" /> Intern Pro
           </h3>
@@ -71,6 +72,7 @@ const App = () => {
             )
           }
         />
+         <Route path="/Ansdis" element={<Ansdis />} />
       </Routes>
     </div>
   );

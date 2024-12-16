@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Ansdis from "./Ansdis";
 
 const Filesubmit = () => {
   const Navigate = useNavigate();
@@ -46,29 +47,49 @@ const Filesubmit = () => {
   };
 
   return (
-    <div>
-      <div
-        className=" ms-5 mt-5 card  "
-        style={{ width: "200px", backgroundColor: "#ADD8E6" }}
-      >
-        <h4 style={{ color: "#040348" }}>Upload Your File</h4>
-        <input
-          className="mt-2"
-          type="file"
-          aria-label="Upload your file"
-          onChange={handlefile}
-        />
-        {fileError && <p style={{ color: "red" }}>{fileError}</p>}
-        <button type="submit" className="btn btn-primary mt-2" disabled={!UploadFile}>
-          Submit
-        </button>
+    (
+      <div>
+        {/* Header Section */}
+        <header
+          className="ms-5 mt-5 card text-center"
+          style={{
+            width: "200px",
+            backgroundColor: "white",
+            boxShadow: "0px 0 30px rgba(1, 41, 112, 0.1)",
+            fontSize: "20px",
+          }}
+        >
+          <h4 style={{ color: "#040348", textDecoration: "underline" }}>
+            Upload Your File
+          </h4>
+          <input
+            className="mt-2"
+            type="file"
+            aria-label="Upload your file"
+            onChange={handlefile}
+          />
+          {fileError && <p style={{ color: "red" }}>{fileError}</p>}
+          <button
+            type="submit"
+            className="btn btn-primary mt-2"
+            disabled={!UploadFile}
+          >
+            Submit
+          </button>
+        </header>
+  
+        {/* Logout Section */}
+        <div className="mt-5 ms-5">
+          <button className="btn btn-primary" onClick={removetoken}>
+            Log out
+          </button>
+        </div>
+  <body> {/* Ansdis Component */}
+  <Ansdis /></body>
+       
       </div>
-      <div className="mt-5 ms-5">
-        <button className="btn btn-primary" onClick={removetoken}>
-          Log out
-        </button>
-      </div>
-    </div>
-  );
-};
-export default Filesubmit;
+   ) );
+  };
+  
+  export default Filesubmit;
+  

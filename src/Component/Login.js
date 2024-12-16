@@ -57,7 +57,7 @@ const Login = () => {
     <div>
       <h3
         className="text-center mt-5"
-        style={{ font: "#012970", fontSize: "20px" }}
+        style={{ color: "#012970", fontSize: "20px" }}
       >
         <img src="logo.png" alt="" /> Intern Pro
       </h3>
@@ -69,7 +69,7 @@ const Login = () => {
           className="col-md-6 col-4  p-4 rounded text-center bg-white border-radius-5px"
           style={{ boxShadow: "0px 0 30px rgba(1, 41, 112, 0.1)" }}
         >
-          <h6 style={{ font: "#012970" }}>Login Your Account</h6>
+          <h6 style={{ color: "#012970" }}>Login Your Account</h6>
           <p>Enter Your Email and Password</p>
 
           {/* Email Field */}

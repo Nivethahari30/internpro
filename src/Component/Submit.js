@@ -15,7 +15,7 @@ const Submit = () => {
   const Navigate = useNavigate();
 
   //save all the data into state
-  const [UserSavedData, setUserSavedData] = useState("");
+  // const [UserSavedData, setUserSavedData] = useState("");
 
   useEffect(() => {
     const saveData = async () => {

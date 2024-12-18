@@ -65,11 +65,7 @@ const App = () => {
         <Route
           path="/Filesubmit"
           element={
-            localStorage.getItem("jwt-token") ? (
-              <Filesubmit />
-            ) : (
-              <Navigate to="/Login" />
-            )
+            isAuth ? <Filesubmit /> : <Navigate to="/Login" />
           }
         />
          <Route path="/Ansdis" element={<Ansdis />} />

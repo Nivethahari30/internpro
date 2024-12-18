@@ -50,7 +50,7 @@ const Login = () => {
     } catch (e) {
       // Handle server errors
       console.error(e);
-      alert("Your Email or Password are incorrect", e);
+      alert("Your Email or Password are incorrect");
     }
   };
 

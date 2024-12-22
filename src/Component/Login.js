@@ -39,13 +39,18 @@ const Login = () => {
 
         //send the event to the app on event happen
         window.dispatchEvent(new Event("token-update"));
+        
         // Navigate to Dashboard on successful login
         Navigate("/Filesubmit");
+        return () => {
+          window.removeEventListener("token-update", token);
+        };
       } else {
         // Handle invalid login
         const respstatus=response.status;
         alert(message||"your validity expires please upgrade your plan");
-        console.log("error");
+        Navigate("/Price")
+        console.log(respstatus);
       }
     } catch (e) {
       // Handle server errors

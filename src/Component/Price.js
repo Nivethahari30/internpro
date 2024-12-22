@@ -1,11 +1,12 @@
 import React from "react";
-import { useContext } from "react";
+import { useContext,useEffect } from "react";
 import { UserRegContext } from "../Context/UserRegContext";
 import { useNavigate } from "react-router-dom";
 
 const Price = () => {
   //get the saveplan function to add  plan into the db
-  const { savePlan } = useContext(UserRegContext);
+   const { UserContext, savePlan, UserFullData } =
+      useContext(UserRegContext);
   const Navigate = useNavigate();
 
   const handlePlan = (Plan) => {
@@ -13,6 +14,24 @@ const Price = () => {
     savePlan(Plan);
     Navigate("/Submit");
   };
+  // useEffect(() => {
+  //   if (typeof UserFullData !== "function") {
+  //     console.error("UserFullData is not a function");
+  //   } else {
+  //     const data = UserFullData(); // Call UserFullData as a function
+  //     console.log("User Data:", data);
+  //   }
+  // }, [UserFullData]);
+useEffect(()=>{
+  if(UserFullData){
+
+    console.log("UserContext:", UserContext);
+    console.log("Plan:", savePlan);
+    console.log("UserFullData:", UserFullData);
+
+    
+  }
+},[UserFullData])
 
   return (
     <div>
@@ -41,6 +60,7 @@ const Price = () => {
               <button
                 className="btn btn-primary mt-3 "
                 style={{ width: "100%" }}
+                disabled={!UserFullData || !UserFullData.name}
                 onClick={() => {
                   handlePlan("Free");
                 }}
